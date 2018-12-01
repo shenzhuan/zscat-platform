@@ -7,7 +7,7 @@ import com.zscat.label.entity.Label;
 /**
  * LabelUtils
  *
- * @author liuruichao
+ * @author zscat
  * Created on 2018/11/12 10:46
  */
 public final class LabelUtils {

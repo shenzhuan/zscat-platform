@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zscat.platform.sys.dao.OperationDao">
+
+    <resultMap id="operationResult" type="com.zscat.platform.sys.model.Operation">
+	    <result column="OPERATION_ID" jdbcType="INTEGER" property="operationId" />
+	    <result column="OPERATION_NAME" jdbcType="VARCHAR" property="operationName" />
+	    <result column="MODULE_ID" jdbcType="INTEGER" property="moduleId" />
+	    <result column="URL" jdbcType="VARCHAR" property="url" />
+        <result column="IS_MENU" jdbcType="TINYINT" property="isMenu" />
+	    <result column="IS_ADMIN" jdbcType="TINYINT" property="isAdmin" />
+	    <result column="SHOW_ORDER" jdbcType="TINYINT" property="showOrder" />
+	    <result column="STATUS" jdbcType="TINYINT" property="status" />
+        <result column="project" jdbcType="INTEGER" property="project" />
+    </resultMap>
+    
+    <resultMap id="menuResult" type="com.zscat.platform.sys.model.Menu">
+	    <result column="MENU_ID" jdbcType="INTEGER" property="menuId" />
+	    <result column="MENU_NAME" jdbcType="VARCHAR" property="label" />
+        <result column="project" jdbcType="INTEGER" property="project" />
+	    <collection property="children" javaType="java.util.ArrayList" ofType="com.zscat.platform.sys.model.Menu">
+	        <result column="SUB_MENU_ID" jdbcType="INTEGER" property="menuId" />
+	        <result column="SUB_MENU_NAME" jdbcType="VARCHAR" property="label" />
+	        <result column="URL" jdbcType="VARCHAR" property="href" />
+            <result column="project" jdbcType="INTEGER" property="project" />
+	    </collection>
+    </resultMap>
+    
+    <select id="selectUserOperationList" resultMap="operationResult">
+        SELECT OP.*
+          FROM TB_ADMIN_USER U, TB_ADMIN_USER_ROLE UR, TB_ADMIN_ROLE_RIGHTS RR, TB_ADMIN_OPERATION OP
+         WHERE U.USER_ID = UR.USER_ID
+           AND UR.ROLE_ID = RR.ROLE_ID
+           AND RR.OPERATION_ID = OP.OPERATION_ID
+           AND U.USER_ID = #{userId}
+    </select>
+    
+    <select id="selectUserMenuList" resultMap="menuResult">
+        SELECT M.MODULE_ID MENU_ID, M.MODULE_NAME MENU_NAME, OP.OPERATION_ID SUB_MENU_ID, OP.OPERATION_NAME SUB_MENU_NAME, OP.URL URL,OP.project
+          FROM TB_ADMIN_USER_ROLE UR, TB_ADMIN_ROLE_RIGHTS RR, TB_ADMIN_OPERATION OP, TB_ADMIN_MODULE M
+         WHERE UR.ROLE_ID = RR.ROLE_ID
+           AND RR.OPERATION_ID = OP.OPERATION_ID
+           AND OP.MODULE_ID = M.MODULE_ID
+           AND M.IS_MENU = 1
+           AND OP.IS_MENU = 1
+           AND UR.USER_ID = #{userId}
+         ORDER BY M.SHOW_ORDER, OP.SHOW_ORDER
+    </select>
+</mapper>

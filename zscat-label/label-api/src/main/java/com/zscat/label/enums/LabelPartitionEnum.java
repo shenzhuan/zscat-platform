@@ -3,7 +3,7 @@ package com.zscat.label.enums;
 /**
  * 标签大类 枚举
  *
- * @author liuruichao
+ * @author zscat
  * Created on 2018/11/5 17:59
  */
 public enum LabelPartitionEnum {

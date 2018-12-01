@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 /**
  * ServiceLogAspect
  *
- * @author liuruichao
+ * @author zscat
  * Created on 2018/11/12 22:12
  */
 @Aspect

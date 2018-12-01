@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * 标签关联关系Service
  *
- * @author liuruichao
+ * @author zscat
  * Created on 2018/11/6 10:39
  */
 public interface LabelRelationService {

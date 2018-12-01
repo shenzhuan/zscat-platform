@@ -3,7 +3,7 @@ package com.zscat.common.constants;
 /**
  * zookeeper node path constants
  *
- * @author liuruichao
+ * @author zscat
  * Created on 2018/11/14 17:25
  */
 public final class ZKServicePathConstants {

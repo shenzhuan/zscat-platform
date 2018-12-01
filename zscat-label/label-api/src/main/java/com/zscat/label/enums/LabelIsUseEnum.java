@@ -3,7 +3,7 @@ package com.zscat.label.enums;
 /**
  * 标签是否使用中 枚举
  *
- * @author liuruichao
+ * @author zscat
  * Created on 2018/11/12 14:38
  */
 public enum LabelIsUseEnum {

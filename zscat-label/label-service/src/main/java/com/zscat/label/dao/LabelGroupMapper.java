@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * LabelGroupMapper
  *
- * @author liuruichao
+ * @author zscat
  * Created on 2018/10/12 18:58
  */
 public interface LabelGroupMapper {

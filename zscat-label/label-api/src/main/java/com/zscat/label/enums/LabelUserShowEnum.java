@@ -3,7 +3,7 @@ package com.zscat.label.enums;
 /**
  * LabelUserShowEnum
  *
- * @author liuruichao
+ * @author zscat
  * Created on 2018/10/25 12:51
  */
 public enum LabelUserShowEnum {

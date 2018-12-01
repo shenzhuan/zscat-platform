@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zscat.platform.sys.dao.RoleDao">
+
+	<resultMap id="roleResult" type="com.zscat.platform.sys.model.Role">
+	    <result column="ROLE_ID" jdbcType="INTEGER" property="roleId" />
+	    <result column="ROLE_NAME" jdbcType="VARCHAR" property="roleName" />
+	    <result column="IS_ADMIN" jdbcType="TINYINT" property="isAdmin" />
+    </resultMap>
+	
+	<select id="queryByUserId" resultMap="roleResult">
+		select R.* FROM TB_ADMIN_ROLE R, TB_ADMIN_USER_ROLE UR WHERE R.ROLE_ID=UR.ROLE_ID AND UR.USER_ID=#{userId}
+	</select>
+</mapper>

@@ -3,7 +3,7 @@ package com.zscat.label.enums;
 /**
  * 标签类型 枚举
  *
- * @author liuruichao
+ * @author zscat
  * Created on 2018/11/5 17:54
  */
 public enum LabelTypeEnum {

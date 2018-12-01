@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * LabelMapper
  *
- * @author liuruichao
+ * @author zscat
  * Created on 2018/10/12 18:58
  */
 public interface LabelMapper {

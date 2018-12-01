@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * LabelService
  *
- * @author liuruichao
+ * @author zscat
  * Created on 2018/10/11 18:02
  */
 public interface LabelService {

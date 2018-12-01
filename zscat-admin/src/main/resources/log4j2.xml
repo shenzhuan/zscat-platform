@@ -1,7 +1,7 @@
 <!-- status=debug 可以查看log4j的装配过程 -->
 <configuration status="off" monitorInterval="1800">
     <properties>
-        <property name="LOG_HOME">/Users/liuruichao/tmp/logs</property>
+        <property name="LOG_HOME">/Users/zscat/tmp/logs</property>
         <property name="SERVER_NAME">label-service</property>
     </properties>
     <appenders>

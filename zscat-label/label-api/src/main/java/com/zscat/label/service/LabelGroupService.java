@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * LabelGroupService
  *
- * @author liuruichao
+ * @author zscat
  * Created on 2018/10/12 19:56
  */
 public interface LabelGroupService {

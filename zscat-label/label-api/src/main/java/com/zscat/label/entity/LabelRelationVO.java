@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * LabelRelationVO
  *
- * @author liuruichao
+ * @author zscat
  * Created on 2018/11/6 12:52
  */
 @Data

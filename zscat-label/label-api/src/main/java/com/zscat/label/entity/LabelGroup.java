@@ -6,7 +6,7 @@ import lombok.EqualsAndHashCode;
 /**
  * LabelGroup
  *
- * @author liuruichao
+ * @author zscat
  * Created on 2018/10/11 18:21
  */
 @Data

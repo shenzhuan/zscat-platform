@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zscat.platform.sys.dao.UserDao">
+
+	<resultMap id="userResult" type="com.zscat.platform.sys.model.User">
+	    <result column="USER_ID" jdbcType="INTEGER" property="userId" />
+	    <result column="ACCOUNT" jdbcType="VARCHAR" property="account" />
+	    <result column="USER_NAME" jdbcType="VARCHAR" property="userName" />
+	    <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+        <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+	    <result column="SUPPLIER_ID" jdbcType="INTEGER" property="supplierId" />
+	    <result column="IS_ADMIN" jdbcType="TINYINT" property="isAdmin" />
+	    <result column="STATUS" jdbcType="TINYINT" property="status" />
+    </resultMap>
+	
+	<select id="selectByUserId"	resultMap="userResult" >
+		select * from TB_ADMIN_USER 
+		 where  USER_ID = #{userId}
+	</select>
+	
+	<select id="selectUserByAccount" resultMap="userResult">
+    	select * from TB_ADMIN_USER where ACCOUNT = #{account}
+  	</select>
+  	
+  	<select id="queryUserByInstructorId" resultMap="userResult">
+  		select * from TB_ADMIN_USER where USER_ID=(select USER_ID from TB_INSTRUCTOR where INSTRUCTOR_ID=#{instructorId})
+  	</select>
+  	
+  	<insert id="insertUser" parameterType="com.zscat.platform.sys.model.User">
+  		insert into TB_ADMIN_USER(ACCOUNT,USER_NAME,PASSWORD,EMAIL,IS_ADMIN,STATUS) 
+  		values(#{account, jdbcType=VARCHAR},#{userName, jdbcType=VARCHAR},
+  			   #{password, jdbcType=VARCHAR},#{email, jdbcType=VARCHAR},0,1)
+  		<selectKey resultType="long" keyProperty="userId" >  
+        	SELECT @@IDENTITY AS userId  
+    	</selectKey>
+  	</insert>
+  	
+  	<insert id="assignedDismission">
+  		insert into TB_ADMIN_USER_ROLE(USER_ID,ROLE_ID) values(#{userId, jdbcType=INTEGER},#{roleId, jdbcType=INTEGER})
+  	</insert>
+  	
+  	<update id="updareDismission">
+  		update TB_ADMIN_USER_ROLE set ROLE_ID=#{newRoleId} where USER_ID=#{userId} and ROLE_ID=#{oldRoleId}
+  	</update>
+  	
+  	<update id="updatePassword">
+  		update TB_ADMIN_USER set PASSWORD=#{password} where USER_ID=#{userId}
+  	</update>
+</mapper>

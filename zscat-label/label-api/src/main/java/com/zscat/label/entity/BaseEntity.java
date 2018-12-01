@@ -8,7 +8,7 @@ import java.util.Date;
 /**
  * BaseEntity
  *
- * @author liuruichao
+ * @author zscat
  * Created on 2018/10/11 16:09
  */
 @Data

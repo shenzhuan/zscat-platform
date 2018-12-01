@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * LabelRelationMapper
  *
- * @author liuruichao
+ * @author zscat
  * Created on 2018/11/06 18:58
  */
 public interface LabelRelationMapper {
