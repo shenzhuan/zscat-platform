@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zscat.label.dao.LabelGroupMapper" >
+  <resultMap id="BaseResultMap" type="com.zscat.label.entity.LabelGroup" >
+    <id column="label_group_id" property="labelGroupId" jdbcType="INTEGER" />
+    <result column="label_group_name" property="labelGroupName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    label_group_id, label_group_name
+  </sql>
+
+  <select id="findAll" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+      SELECT <include refid="Base_Column_List"/>
+      FROM tb_label_group
+  </select>
+
+  <select id="findById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+      SELECT <include refid="Base_Column_List"/>
+      FROM tb_label_group
+      WHERE
+        label_group_id = #{id}
+  </select>
+</mapper>
