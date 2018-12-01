@@ -1,25 +1,28 @@
 package com.zscat.label.impl;
 
-import com.fittime.common.utils.CommonUtils;
 import com.google.common.collect.Lists;
 import com.zscat.label.dao.LabelGroupMapper;
 import com.zscat.label.entity.LabelGroup;
 import com.zscat.label.entity.LabelGroupVO;
 import com.zscat.label.service.LabelGroupService;
+import com.zscat.label.utils.CommonUtils;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * LabelGroupServiceImpl
- *
- * @author liuruichao
- * Created on 2018/10/12 19:59
+ * @version V1.0
+ * @author: zscat
+ * @date: 2018/7/10
+ * @Description: TODO
  */
-@Service("labelGroupService")
+@com.alibaba.dubbo.config.annotation.Service(
+        version = "${label.service.version}",
+        application = "${dubbo.application.id}",
+        registry = "${dubbo.registry.id}"
+)
 @Log4j2
 public class LabelGroupServiceImpl implements LabelGroupService {
     @Resource

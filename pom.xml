@@ -9,8 +9,9 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>zscat-common</module>
         <module>zscat-label</module>
-
+<module>dubbo-consumer</module>
     </modules>
 
     <name>zscat-platform</name>
@@ -42,6 +43,17 @@
             <groupId>com.alibaba.boot</groupId>
             <artifactId>dubbo-spring-boot-actuator</artifactId>
             <version>${dubbo.starter.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-framework</artifactId>
+            <version>${curator-framework.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.zookeeper</groupId>
+            <artifactId>zookeeper</artifactId>
+            <version>${zookeeper.version}</version>
         </dependency>
     </dependencies>
 

@@ -1,7 +1,7 @@
 <!-- status=debug 可以查看log4j的装配过程 -->
 <configuration status="off" monitorInterval="1800">
     <properties>
-        <property name="LOG_HOME">/Users/shenzhuan/tmp/logs</property>
+        <property name="LOG_HOME">/Users/liuruichao/tmp/logs</property>
         <property name="SERVER_NAME">label-service</property>
     </properties>
     <appenders>
@@ -20,7 +20,7 @@
     </appenders>
     <loggers>
         <logger name="org.springframework" level="error"/>
-        <logger name="com.zscat" level="info"/>
+        <logger name="com.fittime" level="info"/>
         <!--<root level="info">
             <appender-ref ref="DevLog" />
             <appender-ref ref="Console" />

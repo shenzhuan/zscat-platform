@@ -1,23 +1,23 @@
 package com.zscat.label.impl;
 
-import com.fittime.common.constants.ZKServicePathConstants;
-import com.fittime.common.utils.CommonUtils;
-import com.fittime.common.utils.ThreadPoolUtils;
-import com.fittime.common.utils.ZkUtils;
-import com.zscat.label.service.LabelGroupService;
-import com.zscat.label.service.LabelService;
-import com.zscat.label.utils.LabelUtils;
-import com.zscat.label.entity.LabelVO;
+import com.alibaba.dubbo.config.annotation.Service;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
+import com.zscat.common.constants.ZKServicePathConstants;
+import com.zscat.common.utils.ThreadPoolUtils;
+import com.zscat.common.utils.ZkUtils;
 import com.zscat.label.dao.LabelMapper;
 import com.zscat.label.dao.LabelRelationMapper;
 import com.zscat.label.entity.Label;
 import com.zscat.label.entity.LabelRelation;
+import com.zscat.label.entity.LabelVO;
 import com.zscat.label.enums.*;
+import com.zscat.label.service.LabelGroupService;
+import com.zscat.label.service.LabelService;
+import com.zscat.label.utils.CommonUtils;
+import com.zscat.label.utils.LabelUtils;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,12 +28,16 @@ import javax.annotation.Resource;
 import java.util.*;
 
 /**
- * LabelServiceImpl
- *
- * @author liuruichao
- * Created on 2018/10/12 18:58
+ * @version V1.0
+ * @author: zscat
+ * @date: 2018/7/10
+ * @Description: TODO
  */
-@Service("labelService")
+@Service(
+        version = "${label.service.version}",
+        application = "${dubbo.application.id}",
+        registry = "${dubbo.registry.id}"
+)
 @Log4j2
 public class LabelServiceImpl implements LabelService {
     @Resource

@@ -1,10 +1,11 @@
 package com.zscat.label;
 
 import com.alibaba.dubbo.config.spring.context.annotation.EnableDubbo;
+import com.alibaba.dubbo.container.Main;
 import lombok.extern.log4j.Log4j2;
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -25,8 +26,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class LabelProviderApplication {
 
     public static void main(String[] args) {
-        new SpringApplicationBuilder(LabelProviderApplication.class)
-                .web(false) // 非 Web 应用
-                .run(args);
+        SpringApplication.run(LabelProviderApplication.class, args);
+        Main.main(args);
     }
 }
