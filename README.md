@@ -58,43 +58,47 @@ JS框架：jQuery
 #### 软件架构
 软件架构说明
 
-├── zscat-common -- 工具类，通用类
 
-├── zscat-label -- blog dubbo服务 单独的zscat-label数据库
-    |-- label-api     label接口
-    |-- label-service label服务
-├── zscat-blog--  blog dubbo服务 单独的zscat-blog数据库
-    |-- blog-api      blog接口
-    |-- blog-service  blog服务
-├── zscat-manager-- 后台管理系统 zscat-platform数据库 springboot shiro
 
-├── zscat-web -- 前端项目
-
-├── zscat-admin-- 后台管理系统  springboot vue
-
+- ├── zscat-common -- 工具类，通用类
+- 
+- ├── zscat-label -- blog dubbo服务 单独的zscat-label数据库
+-     |-- label-api     label接口
+-     |-- label-service label服务
+- ├── zscat-blog--  blog dubbo服务 单独的zscat-blog数据库
+-     |-- blog-api      blog接口
+-     |-- blog-service  blog服务
+- ├── zscat-manager-- 后台管理系统 zscat-platform数据库 springboot shiro
+- 
+- ├── zscat-web -- 前端项目
+- 
+- ├── zscat-admin-- 后台管理系统  springboot vue
+- 
 
 
 
 #### 安装教程
 
-1. 创建数据库zscat-label，zscat-blog，zscat-platform
-2.启动zookeep
-3.启动label-service，运行springboot的主类
-4.启动blog-service，运动springboot的主类
-5.启动zscat-manager，运动springboot的主类，http://localhost:9095/index  账号 test 123456
-4.启动zscat-web，运动springboot的主类     http://localhost:9094/blog/index
-4.启动zscat-admin，运动springboot的主类 http://localhost:9091/index  账号 admin 123456
 
+
+- 1. 创建数据库zscat-label，zscat-blog，zscat-platform
+- 2.启动zookeep
+- 3.启动label-service，运行springboot的主类
+- 4.启动blog-service，运动springboot的主类
+- 5.启动zscat-manager，运动springboot的主类，http://localhost:9095/index  账号 test 123456
+- 6.启动zscat-web，运动springboot的主类     http://localhost:9094/blog/index
+- 7.启动zscat-admin，运动springboot的主类 http://localhost:9091/index  账号 admin 123456
+- 
 
 #### 使用说明
-blog   22182 9093
-label  22181 9090
-admin 9091
-web   9094 
-manager 9095
-1. xxxx
-2. xxxx
-3. xxxx
+
+
+- blog   22182 9093
+- label  22181 9090
+- admin 9091
+- web   9094 
+- manager 9095
+- 
 
 #### 参与贡献
 
