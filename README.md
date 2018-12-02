@@ -21,6 +21,7 @@ blog   22182 9093
 label  22181 9090
 admin 9091
 web   9094 
+manager 9095
 1. xxxx
 2. xxxx
 3. xxxx
