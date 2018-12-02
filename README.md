@@ -71,7 +71,6 @@ JS框架：jQuery
 - ├── zscat-manager-- 后台管理系统 zscat-platform数据库 springboot shiro
 - ├── zscat-web -- 前端项目
 - ├── zscat-admin-- 后台管理系统  springboot vue
-- 
 
 
 
@@ -105,14 +104,14 @@ JS框架：jQuery
 3. 提交代码
 4. 新建 Pull Request
 
-微信交流群
+### 微信交流群
 ![输入图片说明](https://images.gitee.com/uploads/images/2018/1202/213120_80b3755c_134431.jpeg "platform.jpg")
-群主微信
+### 群主微信
 ![输入图片说明](https://images.gitee.com/uploads/images/2018/1202/213146_d8dcc5b2_134431.jpeg "zscat.jpg")
 
 ###  请作者喝杯咖啡
 
 ![输入图片说明](https://git.oschina.net/uploads/images/2017/0829/203712_6694b4c1_134431.jpeg "weixin.jpg")
 ![输入图片说明](https://git.oschina.net/uploads/images/2017/0829/203723_5567bd56_134431.jpeg "alipay.jpg")
- **- - 关注公众号 ，有更多的资料** 
+###  **- - 关注公众号 ，有更多的资料** 
 ![输入图片说明](https://images.gitee.com/uploads/images/2018/0923/103015_3df65a8a_134431.jpeg "qrcode_for_gh_ad5fa85786aa_344.jpg")
