@@ -1,0 +1,57 @@
+spring:
+  application:
+    name: zscat-web-dubbo-consumer1
+  datasource:
+    name: test
+    url: jdbc:mysql://172.31.200.204:8066/statistic?useUnicode=true&characterEncoding=utf8&autoReconnect=true&useSSL=false
+    username: root_dev
+    password: fittime1991
+    driver-class-name: com.mysql.jdbc.Driver
+  mybatis:
+    mapper-locations: classpath:mapper/*.xml
+  thymeleaf:
+    mode: LEGACYHTML5
+    cache: false
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+mybatis:
+  mapper-locations: mapper/*.xml
+server:
+  port: 9094
+
+# Service version
+web:
+  service:
+    version: 1.0.0
+dubbo:
+  application:
+    id: zscat-dubbo-consumer-id1
+    name: zscat-dubbo-consumer-name1
+  registry:
+    protocol: zookeeper
+    address: zookeeper://localhost:2181
+    id: zscat-registry-1
+management:
+  endpoint:
+    dubbo-configs:
+      enabled: true
+    dubbo:
+      enabled: true
+    dubbo-services:
+      enabled: true
+    dubbo-properties:
+      enabled: true
+    dubbo-shutdown:
+      enabled: true
+    dubbo-references:
+      enabled: true
+  health:
+    dubbo:
+      status:
+        defaults: memory
+        extras: load,threadpool
+  endpoints:
+    web:
+      exposure:
+        include: '*'
