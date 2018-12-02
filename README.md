@@ -2,6 +2,7 @@
 
 #### 项目介绍
 
+集成最新的dubbo https://github.com/alibaba/dubbo-spring-boot-starter
 zscat-platform是高效率，低封装，面向学习型，面向微服的开源Java EE开发框架。
 
 zscat-platform是在SpringBoot基础上搭建的一个Java基础开发平台，MyBatis为数据访问层，ApacheShiro为权限授权层，Ehcahe对常用数据进行缓存,dubbo为数据远程调用。
