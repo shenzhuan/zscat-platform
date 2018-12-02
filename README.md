@@ -61,7 +61,6 @@ JS框架：jQuery
 
 
 - ├── zscat-common -- 工具类，通用类
-- 
 - ├── zscat-label -- blog dubbo服务 单独的zscat-label数据库
 -     |-- label-api     label接口
 -     |-- label-service label服务
@@ -69,9 +68,7 @@ JS框架：jQuery
 -     |-- blog-api      blog接口
 -     |-- blog-service  blog服务
 - ├── zscat-manager-- 后台管理系统 zscat-platform数据库 springboot shiro
-- 
 - ├── zscat-web -- 前端项目
-- 
 - ├── zscat-admin-- 后台管理系统  springboot vue
 - 
 
