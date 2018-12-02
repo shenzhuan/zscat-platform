@@ -11,6 +11,8 @@
     <modules>
         <module>zscat-common</module>
         <module>zscat-label</module>
+        <module>zscat-blog</module>
+        <module>zscat-web</module>
         <module>zscat-admin</module>
         <module>statisticManage</module>
         <module>incubator-dubbo-ops-develop</module>

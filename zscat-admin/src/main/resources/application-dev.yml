@@ -1,6 +1,6 @@
 spring:
   application:
-    name: zscat-label-dubbo-consumer1
+    name: zscat-admin-dubbo-consumer1
   datasource:
     name: test
     url: jdbc:mysql://172.31.200.204:8066/statistic?useUnicode=true&characterEncoding=utf8&autoReconnect=true&useSSL=false
