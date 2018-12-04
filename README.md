@@ -1,5 +1,6 @@
 # zscat-platform
 
+# qq群 171826977
 #### 项目介绍
 
 集成最新的dubbo https://github.com/alibaba/dubbo-spring-boot-starter
