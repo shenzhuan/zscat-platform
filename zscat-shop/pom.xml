@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.platform</groupId>
+    <artifactId>zscat-shop</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>goods-api</module>
+        <module>user-api</module>
+        <module>order-api</module>
+
+        <module>goods-service</module>
+        <module>user-service</module>
+        <module>order-service</module>
+    </modules>
+
+    <name>zscat-shop</name>
+    <description>zscat-shop for Spring Boot</description>
+    <parent>
+        <groupId>com.platform</groupId>
+        <artifactId>zscat-platform</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+
+</project>

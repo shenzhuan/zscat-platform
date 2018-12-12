@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://code.alibabatech.com/schema/dubbo
+            http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<dubbo:application name="dubbo-label-provider" />
+
+	<dubbo:registry id="label-service"  address="${zk.url}" check="false"/>
+
+	<dubbo:protocol name="dubbo" dispatcher="all" threadpool="cached" threads="1500"/>
+
+	<!-- 服务接口 -->
+	<dubbo:service registry="label-service" interface="com.zscat.label.service.LabelService" ref="labelService" loadbalance="leastactive"
+				   retries="1"
+				   executes="2000"
+				   timeout="30000"
+	/>
+	<dubbo:service registry="label-service" interface="com.zscat.label.service.LabelGroupService" ref="labelGroupService" loadbalance="leastactive"
+				   retries="1"
+				   executes="2000"
+				   timeout="30000"
+	/>
+    <dubbo:service registry="label-service" interface="com.zscat.label.service.LabelRelationService" ref="labelRelationService" loadbalance="leastactive"
+                   retries="1"
+                   executes="2000"
+                   timeout="30000"
+	/>
+</beans>

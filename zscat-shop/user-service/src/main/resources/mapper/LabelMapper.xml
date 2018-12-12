@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zscat.label.dao.LabelMapper" >
+  <resultMap id="BaseResultMap" type="com.zscat.label.entity.Label" >
+    <id column="label_id" property="labelId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_user_id" property="createUserId" jdbcType="INTEGER" />
+    <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+    <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP" />
+    <result column="last_update_user_id" property="lastUpdateUserId" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="is_user_show" property="isUserShow" jdbcType="INTEGER" />
+    <result column="label_group_id" property="labelGroupId" jdbcType="INTEGER" />
+    <result column="label_name" property="labelName" jdbcType="VARCHAR" />
+    <result column="label_partition" property="labelPartition" jdbcType="VARCHAR" />
+    <result column="label_status" property="labelStatus" jdbcType="INTEGER" />
+    <result column="label_type" property="labelType" jdbcType="INTEGER" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    label_id, create_time, create_user_id, is_delete, last_update_time, last_update_user_id,
+    remark, is_user_show, label_group_id, label_name, label_status, label_type, label_partition, parent_id
+  </sql>
+
+  <insert id="save" useGeneratedKeys="true" keyColumn="label_id" keyProperty="labelId" parameterType="com.zscat.label.entity.Label">
+    INSERT INTO tb_label(<include refid="Base_Column_List"/>)
+    VALUES (#{labelId}, #{createTime}, #{createUserId}, #{isDelete}, #{lastUpdateTime}, #{lastUpdateUserId},
+      #{remark}, #{isUserShow}, #{labelGroupId}, #{labelName}, #{labelStatus}, #{labelType}, #{labelPartition}, #{parentId})
+  </insert>
+
+  <select id="findByLabelGroupId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    SELECT <include refid="Base_Column_List"/>
+    FROM tb_label
+    WHERE is_delete = 0 AND label_status =1
+      AND label_group_id = #{labelGroupId}
+  </select>
+
+  <select id="findById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    SELECT <include refid="Base_Column_List"/>
+    FROM tb_label
+    WHERE is_delete = 0
+      AND label_id = #{labelId}
+  </select>
+
+  <select id="findAll" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List"/>
+    FROM tb_label
+  </select>
+
+  <select id="listByPage" resultMap="BaseResultMap" parameterType="com.zscat.label.entity.LabelVO">
+      SELECT <include refid="Base_Column_List"/>
+      FROM tb_label
+      WHERE is_delete = 0
+      <if test="labelPartition != null and labelPartition != 0">
+          AND label_partition = #{labelPartition}
+      </if>
+      <if test="labelGroupId != null and labelGroupId != 0">
+          AND label_group_id = #{labelGroupId}
+      </if>
+      <if test="labelType != null and labelType != 0">
+          AND label_type = #{labelType}
+      </if>
+      <if test="isUserShow != null and isUserShow != 0">
+          AND is_user_show = #{isUserShow}
+      </if>
+      <if test="labelStatus != null and labelStatus != 0">
+          AND label_status = #{labelStatus}
+      </if>
+      <if test="createTimeMin != null and createTimeMin != ''.toString()">
+          AND create_time <![CDATA[>=]]> #{createTimeMin}
+      </if>
+      <if test="createTimeMax != null and createTimeMax != ''.toString()">
+          AND create_time <![CDATA[<=]]> #{createTimeMax}
+      </if>
+      <if test="searchKeyword != null and searchKeyword != ''.toString()">
+          AND (label_id = #{searchKeyword} OR label_name LIKE CONCAT('%',#{searchKeyword},'%'))
+      </if>
+      ORDER BY create_time DESC
+      <if test="offset != -1 and pageSize != null and page != null">
+          LIMIT #{offset}, #{pageSize}
+      </if>
+  </select>
+
+  <select id="countByPage" resultType="java.lang.Long" parameterType="com.zscat.label.entity.LabelVO">
+      SELECT COUNT(*)
+      FROM tb_label
+      WHERE is_delete = 0
+      <if test="labelPartition != null and labelPartition != 0">
+          AND label_partition = #{labelPartition}
+      </if>
+      <if test="labelGroupId != null and labelGroupId != 0">
+          AND label_group_id = #{labelGroupId}
+      </if>
+      <if test="labelType != null and labelType != 0">
+          AND label_type = #{labelType}
+      </if>
+      <if test="isUserShow != null and isUserShow != 0">
+          AND is_user_show = #{isUserShow}
+      </if>
+      <if test="labelStatus != null and labelStatus != 0">
+          AND label_status = #{labelStatus}
+      </if>
+      <if test="createTimeMin != null and createTimeMin != ''.toString()">
+          AND create_time <![CDATA[>=]]> #{createTimeMin}
+      </if>
+      <if test="createTimeMax != null and createTimeMax != ''.toString()">
+          AND create_time <![CDATA[<=]]> #{createTimeMax}
+      </if>
+      <if test="searchKeyword != null and searchKeyword != ''.toString()">
+          AND (label_id = #{searchKeyword} OR label_name LIKE CONCAT('%',#{searchKeyword},'%'))
+      </if>
+      <if test="labelName != null and labelName != ''.toString()">
+          AND label_name = #{labelName}
+      </if>
+  </select>
+
+  <select id="findByKeyword" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List"/>
+    FROM tb_label
+    WHERE is_delete = 0
+      AND label_status = 1
+      <if test="keyword != null and keyword != ''.toString()">
+        AND label_name LIKE CONCAT('%',#{keyword},'%')
+      </if>
+      <if test="labelType != null and labelType != ''.toString() and labelType !='0'.toString()">
+          AND label_type =  #{labelType}
+      </if>
+      <if test="partitionIds != null and partitionIds.size > 0 and !partitionIds.contains(0)">
+        AND label_partition IN
+        <foreach collection="partitionIds" item="partitionId" open="(" close=")" separator=",">
+            #{partitionId}
+        </foreach>
+      </if>
+      <if test="labelGroupIds != null and labelGroupIds.size > 0 and !labelGroupIds.contains(0)">
+          AND label_group_id IN
+          <foreach collection="labelGroupIds" item="labelGroupId" open="(" close=")" separator=",">
+              #{labelGroupId}
+          </foreach>
+      </if>
+      ORDER BY create_time DESC
+  </select>
+
+  <select id="getCurrentSeasonLabel" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List"/>
+    FROM tb_label
+    WHERE label_name = #{labelName}
+  </select>
+
+  <update id="batchDelete" parameterType="java.util.List">
+    UPDATE tb_label
+    SET is_delete = 1
+    WHERE label_id IN
+      <foreach collection="labelIds" item="labelId" open="(" close=")" separator=",">
+        #{labelId}
+      </foreach>
+  </update>
+
+    <update id="delete" >
+        UPDATE tb_label
+        SET is_delete = 1
+        WHERE label_id = #{labelId}
+
+    </update>
+
+  <update id="update" parameterType="com.zscat.label.entity.Label">
+      UPDATE tb_label
+      SET is_user_show = #{isUserShow},
+          label_status = #{labelStatus},
+          label_name = #{labelName},
+          remark = #{remark}
+      WHERE label_id = #{labelId}
+  </update>
+
+  <update id="updateStatus">
+    UPDATE tb_label
+    SET label_status = #{status}
+    WHERE label_id IN
+      <foreach collection="labelIds" item="labelId" open="(" close=")" separator=",">
+        #{labelId}
+      </foreach>
+  </update>
+
+  <select id="findByParentId" resultMap="BaseResultMap">
+      SELECT <include refid="Base_Column_List"/>
+      FROM tb_label
+      WHERE is_delete = 0 AND label_status =1
+      AND parent_id = #{parentId}
+  </select>
+</mapper>
