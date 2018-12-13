@@ -1,7 +1,6 @@
-package com.zscat.shop.domain;
+package com.zscat.goods.entity;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 
@@ -30,7 +29,7 @@ public class TGoodsClassDO implements Serializable {
 	//
 	private String parentIds;
 	private List<TGoodsClassDO> childs;
-	private List<TGoodsDO> goodsList;
+	private List<com.zscat.goods.entity.TGoodsDO> goodsList;
 	public List<TGoodsClassDO> getChilds() {
 		return childs;
 	}
@@ -39,11 +38,11 @@ public class TGoodsClassDO implements Serializable {
 		this.childs = childs;
 	}
 
-	public List<TGoodsDO> getGoodsList() {
+	public List<com.zscat.goods.entity.TGoodsDO> getGoodsList() {
 		return goodsList;
 	}
 
-	public void setGoodsList(List<TGoodsDO> goodsList) {
+	public void setGoodsList(List<com.zscat.goods.entity.TGoodsDO> goodsList) {
 		this.goodsList = goodsList;
 	}
 

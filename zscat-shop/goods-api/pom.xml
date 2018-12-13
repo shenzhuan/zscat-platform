@@ -24,5 +24,10 @@
             <version>1.16.14</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>com.platform</groupId>
+            <artifactId>zscat-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 </project>

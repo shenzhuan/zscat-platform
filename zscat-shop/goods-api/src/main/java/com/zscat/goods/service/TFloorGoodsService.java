@@ -1,6 +1,6 @@
 package com.zscat.shop.service;
 
-import com.zscat.shop.domain.TFloorGoodsDO;
+import com.zscat.goods.entity.TFloorGoodsDO;
 
 import java.util.List;
 import java.util.Map;

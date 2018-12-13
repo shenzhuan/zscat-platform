@@ -1,9 +1,8 @@
-package com.zscat.shop.service;
+package com.zscat.goods.service;
 
 
-import com.zsCat.common.base.Tree;
-import com.zscat.shop.domain.TGoodsClassDO;
-
+import com.zscat.common.utils.Tree;
+import com.zscat.goods.entity.TGoodsClassDO;
 
 import java.util.List;
 import java.util.Map;

@@ -1,7 +1,7 @@
 package com.zscat.goods.entity;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
+import java.util.Date;
 
 
 
@@ -10,9 +10,9 @@ import java.math.BigDecimal;
  * 
  * @author zscat
  * @email 951449465@qq.com
- * @date 2017-11-30 18:40:31
+ * @date 2017-10-15 15:07:37
  */
-public class UserJfgoodsDO implements Serializable {
+public class TReplyDO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	//
@@ -20,15 +20,15 @@ public class UserJfgoodsDO implements Serializable {
 	//
 	private Long goodsid;
 	//
+	private String content;
+	//
+	private Date createdate;
+	//
+	private Integer status;
+	//
 	private Long userid;
 	//
-	private String img;
-	//
-	private String goodsname;
-	//
-	private Integer count;
-	//
-	private BigDecimal price;
+	private String username;
 
 	/**
 	 * 设置：
@@ -57,6 +57,42 @@ public class UserJfgoodsDO implements Serializable {
 	/**
 	 * 设置：
 	 */
+	public void setContent(String content) {
+		this.content = content;
+	}
+	/**
+	 * 获取：
+	 */
+	public String getContent() {
+		return content;
+	}
+	/**
+	 * 设置：
+	 */
+	public void setCreatedate(Date createdate) {
+		this.createdate = createdate;
+	}
+	/**
+	 * 获取：
+	 */
+	public Date getCreatedate() {
+		return createdate;
+	}
+	/**
+	 * 设置：
+	 */
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+	/**
+	 * 获取：
+	 */
+	public Integer getStatus() {
+		return status;
+	}
+	/**
+	 * 设置：
+	 */
 	public void setUserid(Long userid) {
 		this.userid = userid;
 	}
@@ -69,49 +105,13 @@ public class UserJfgoodsDO implements Serializable {
 	/**
 	 * 设置：
 	 */
-	public void setImg(String img) {
-		this.img = img;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	/**
 	 * 获取：
 	 */
-	public String getImg() {
-		return img;
-	}
-	/**
-	 * 设置：
-	 */
-	public void setGoodsname(String goodsname) {
-		this.goodsname = goodsname;
-	}
-	/**
-	 * 获取：
-	 */
-	public String getGoodsname() {
-		return goodsname;
-	}
-	/**
-	 * 设置：
-	 */
-	public void setCount(Integer count) {
-		this.count = count;
-	}
-	/**
-	 * 获取：
-	 */
-	public Integer getCount() {
-		return count;
-	}
-	/**
-	 * 设置：
-	 */
-	public void setPrice(BigDecimal price) {
-		this.price = price;
-	}
-	/**
-	 * 获取：
-	 */
-	public BigDecimal getPrice() {
-		return price;
+	public String getUsername() {
+		return username;
 	}
 }

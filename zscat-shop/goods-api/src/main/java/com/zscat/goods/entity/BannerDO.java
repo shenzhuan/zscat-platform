@@ -9,9 +9,9 @@ import java.io.Serializable;
  * 
  * @author zscat
  * @email 951449465@qq.com
- * @date 2017-10-15 15:07:36
+ * @date 2017-10-18 10:31:32
  */
-public class TBrandDO implements Serializable {
+public class BannerDO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	//
@@ -22,6 +22,18 @@ public class TBrandDO implements Serializable {
 	private Integer stat;
 	//图片
 	private String img;
+	//
+	private Long storeid;
+
+	private String url;
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
 
 	/**
 	 * 设置：
@@ -70,5 +82,29 @@ public class TBrandDO implements Serializable {
 	 */
 	public String getImg() {
 		return img;
+	}
+	/**
+	 * 设置：
+	 */
+	public void setStoreid(Long storeid) {
+		this.storeid = storeid;
+	}
+	/**
+	 * 获取：
+	 */
+	public Long getStoreid() {
+		return storeid;
+	}
+
+	@Override
+	public String toString() {
+		return "BannerDO{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", stat=" + stat +
+				", img='" + img + '\'' +
+				", storeid=" + storeid +
+				", url='" + url + '\'' +
+				'}';
 	}
 }

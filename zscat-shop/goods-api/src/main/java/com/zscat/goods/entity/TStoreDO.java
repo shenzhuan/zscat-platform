@@ -1,4 +1,4 @@
-package com.zscat.shop.domain;
+package com.zscat.goods.entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

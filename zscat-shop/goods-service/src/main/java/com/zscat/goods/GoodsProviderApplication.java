@@ -1,4 +1,4 @@
-package com.zscat.label;
+package com.zscat.goods;
 
 import com.alibaba.dubbo.config.spring.context.annotation.EnableDubbo;
 import lombok.extern.log4j.Log4j2;
@@ -22,10 +22,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableAspectJAutoProxy
 @ComponentScan("com.zscat")
 @EnableDubbo
-public class LabelProviderApplication {
+public class GoodsProviderApplication {
 
     public static void main(String[] args) {
-        new SpringApplicationBuilder(LabelProviderApplication.class)
+        new SpringApplicationBuilder(GoodsProviderApplication.class)
                 .web(false) // 非 Web 应用
                 .run(args);
     }

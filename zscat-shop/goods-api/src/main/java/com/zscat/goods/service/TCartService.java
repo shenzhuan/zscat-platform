@@ -1,10 +1,7 @@
-package com.zscat.shop.service;
+package com.zscat.goods.service;
 
-import com.zsCat.common.common.utils.R;
-import com.zscat.shop.domain.TCartDO;
-import com.zscat.shop.domain.TOrderDO;
+import com.zscat.goods.entity.TCartDO;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
@@ -47,11 +44,4 @@ public interface TCartService {
 
 	Map<String, Object> ordersubmitpreview(Map<String, Object> params);
 
-	TOrderDO orderSubmit(HttpServletRequest req);
-
-	TOrderDO insertWebOrder(String[] cartIds, Long addressid, Long paymentid, String usercontent, Long id, String username);
-
-	TOrderDO orderStreetSubmit(HttpServletRequest req,Long userid);
-
-	R balancePay(HttpServletRequest req,Long userid);
-}
+	}

@@ -1,7 +1,6 @@
-package com.zscat.shop.domain;
+package com.zscat.goods.entity;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 
@@ -33,9 +32,9 @@ public class TFloorDO implements Serializable {
 	private String advimg;
 	//活动链接
 	private String advurl;
-	private List<TGoodsDO> goodsList;
-	private List<TGoodsDO> goodsList1;
-	private List<TGoodsClassDO> goodsClassList;
+	private List<com.zscat.goods.entity.TGoodsDO> goodsList;
+	private List<com.zscat.goods.entity.TGoodsDO> goodsList1;
+	private List<com.zscat.goods.entity.TGoodsClassDO> goodsClassList;
 	private List<TBrandDO> brandList;
 
 	public List<TBrandDO> getBrandList() {
@@ -46,26 +45,26 @@ public class TFloorDO implements Serializable {
 		this.brandList = brandList;
 	}
 
-	public List<TGoodsClassDO> getGoodsClassList() {
+	public List<com.zscat.goods.entity.TGoodsClassDO> getGoodsClassList() {
 		return goodsClassList;
 	}
 
-	public void setGoodsClassList(List<TGoodsClassDO> goodsClassList) {
+	public void setGoodsClassList(List<com.zscat.goods.entity.TGoodsClassDO> goodsClassList) {
 		this.goodsClassList = goodsClassList;
 	}
 
-	public List<TGoodsDO> getGoodsList() {
+	public List<com.zscat.goods.entity.TGoodsDO> getGoodsList() {
 		return goodsList;
 	}
 
-	public void setGoodsList(List<TGoodsDO> goodsList) {
+	public void setGoodsList(List<com.zscat.goods.entity.TGoodsDO> goodsList) {
 		this.goodsList = goodsList;
 	}
-	public List<TGoodsDO> getGoodsList1() {
+	public List<com.zscat.goods.entity.TGoodsDO> getGoodsList1() {
 		return goodsList1;
 	}
 
-	public void setGoodsList1(List<TGoodsDO> goodsList1) {
+	public void setGoodsList1(List<com.zscat.goods.entity.TGoodsDO> goodsList1) {
 		this.goodsList1 = goodsList1;
 	}
 

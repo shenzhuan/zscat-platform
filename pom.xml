@@ -10,12 +10,8 @@
 
     <modules>
         <module>zscat-common</module>
-        <module>zscat-label</module>
-        <module>zscat-blog</module>
-        <module>zscat-web</module>
-        <module>zscat-admin</module>
-        <module>zscat-manager</module>
-        <module>incubator-dubbo-ops-develop</module>
+        <module>zscat-shop</module>
+
     </modules>
 
     <name>zscat-platform</name>

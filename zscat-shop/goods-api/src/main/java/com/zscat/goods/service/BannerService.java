@@ -1,6 +1,7 @@
 package com.zscat.goods.service;
 
-import com.zscat.goods.entity.TStoreDO;
+
+import com.zscat.goods.entity.BannerDO;
 
 import java.util.List;
 import java.util.Map;
@@ -10,19 +11,19 @@ import java.util.Map;
  * 
  * @author zscat
  * @email 951449465@qq.com
- * @date 2017-10-15 15:07:37
+ * @date 2017-10-18 10:31:32
  */
-public interface TStoreService {
+public interface BannerService {
 	
-	TStoreDO get(Long id);
+	BannerDO get(Long id);
 	
-	List<TStoreDO> list(Map<String, Object> map);
+	List<BannerDO> list(Map<String, Object> map);
 	
 	int count(Map<String, Object> map);
 	
-	int save(TStoreDO tStore);
+	int save(BannerDO banner);
 	
-	int update(TStoreDO tStore);
+	int update(BannerDO banner);
 	
 	int remove(Long id);
 	
