@@ -444,6 +444,8 @@ public class DiaShopController {
             viewGoodslist.add(JsonUtils.fromJson(json, TGoodsDO.class));
         }*/
         model.addAttribute("viewGoodslist", viewGoodslist);
+        model.addAttribute("goods", goods);
+
 //        params = new Query(params1);
 //        params.put("limit", 60);
 //        params.put("goodsid",goods.getId());

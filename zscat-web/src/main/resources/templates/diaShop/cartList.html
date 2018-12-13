@@ -1,0 +1,180 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="/diaShop/css/common.css" rel="stylesheet" type="text/css"/>
+    <link href="/diaShop/css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="/diaShop/fonts/iconfont.css" rel="stylesheet" type="text/css"/>
+    <script src="/diaShop/js/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <script src="/diaShop/js/jquery.SuperSlide.2.1.1.js" type="text/javascript"></script>
+    <script src="/diaShop/js/common_js.js" type="text/javascript"></script>
+    <script src="/diaShop/js/footer.js" type="text/javascript"></script>
+    <script src="/diaShop/js/lrtk.js" type="text/javascript"></script>
+    <script src="/js/plugins/layer/layer.min.js"></script>
+    <title>购物车</title>
+</head>
+
+<body>
+<!--顶部图层-->
+<div th:replace="diaShop/layout/mallHeader"></div>
+
+<!--购物车样式-->
+<div class="Inside_pages">
+    <div class="Process_img"><img src="/diaShop/images/Process_img_01.png"/></div>
+    <div class="content mar_20">
+        <table border="0" class="car_tab" style="width:1200px; margin-bottom:50px;" cellspacing="0" cellpadding="0">
+            <tbody>
+            <tr>
+                <td class="car_th" width="490">商品名称</td>
+                <td class="car_th" width="140">单价</td>
+                <td class="car_th" width="150">购买数量</td>
+                <td class="car_th" width="130">小计</td>
+                <td class="car_th" width="140">返还积分</td>
+                <td class="car_th" width="150">操作</td>
+            </tr>
+            <tr th:each="goods:${cartList}">
+                <td>
+                    <div class="c_s_img"><img th:src="@{${goods.img}}" width="73" height="73"></div>
+                    <span th:text="${goods.goodsname}"></span>
+                </td>
+                <td align="center" th:id="'price'+${goods.id}" th:text="${goods.price}"></td>
+                <td align="center">
+                    <div class="c_num">
+                        <input type="button" value="-" th:label="${goods.id}" th:id="'count_down_'+${goods.id}"
+                               class="car_btn_1">
+                        <input name="count" th:id="'goods_count_'+${goods.id}" type="text" th:value="${goods.count}"
+                               class="car_ipt">
+                        <input type="button" value="+" th:label="${goods.id}" th:id="'count_up_'+${goods.id}"
+                               class="car_btn_2">
+                    </div>
+                </td>
+                <td align="center" style="color:#ff4e00;" th:id="'goods_total_price_'+${goods.id}"
+                    th:text="'￥'+${goods.totalprice}">￥620.00
+                </td>
+                <td align="center">26R</td>
+                <td align="center"><a th:onclick="'deleteCart('+${goods.id}+')'">删除</a>&nbsp; &nbsp;<a href="#">加入收藏</a>
+                </td>
+            </tr>
+            <tr height="70">
+                <td colspan="6" style="font-family:'Microsoft YaHei'; border-bottom:0;">
+                    <label class="r_rad"><input type="checkbox" name="clear" checked="checked"></label><label
+                        class="r_txt">清空购物车</label>
+                    <span class="fr">商品总价：<b style="font-size:22px; color:#ff4e00;"
+                                             id="totalprice" th:text="${totalprice}">￥2899</b></span>
+                </td>
+            </tr>
+            <tr valign="top" height="150">
+                <td colspan="6" align="right">
+                    <a href="/diaShop/index"><img src="/diaShop/images/buy1.gif"></a>&nbsp; &nbsp;
+                    <a href="#" onclick="jiesuan()"><img src="/diaShop/images/buy2.gif"></a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+<div th:replace="diaShop/layout/mallFooter"></div>
+<script type="text/javascript">
+    function goods_count_adjust(cart_id, count) {
+        jQuery.post("/person/diaShop/goods_count_adjust", {"cart_id": cart_id, "count": count}, function (data) {
+            if (data.code == 0) {
+                jQuery("#goods_count_" + cart_id).val(count);
+                jQuery("#goods_count_" + cart_id).attr("goods_count", count)
+                jQuery("#goods_total_price_" + cart_id).html("¥" + data.goodsprice);
+                jQuery("#totalprice").html(data.totalprice);
+            }
+            if (data.code == "200") {
+                alert("库存不足，请重新选择数量！");
+                jQuery("#goods_count_" + cart_id).val(jQuery("#goods_count_" + cart_id).attr("goods_count"));
+            }
+            if (data.code == "300") {
+                alert("团购库存不足，请重新选择数量！");
+                jQuery("#goods_count_" + cart_id).val(jQuery("#goods_count_" + cart_id).attr("goods_count"));
+            }
+        }, "json");
+    }
+
+    jQuery("span[id^=count_down]").click(function () {
+        var cart_id = jQuery(this).attr("label");
+        var count = jQuery("#goods_count_" + cart_id).val();
+        if (count > 1) {
+            count--;
+            goods_count_adjust(cart_id, count)
+        }
+    });
+    jQuery("span[id^=count_up]").click(function () {
+        var cart_id = jQuery(this).attr("label");
+        console.log('cart_id:' + cart_id);
+        var count = jQuery("#goods_count_" + cart_id).val();
+        if (count > 0) {
+            count++;
+            goods_count_adjust(cart_id, count);
+        }
+    });
+
+    function addCart(goodsid) {
+        console.log(goodsid);
+        var count = 1;
+        $.ajax({
+            type: "post",
+            url: '/person/diaShop/addCart',
+            data: {
+                goodsid: goodsid,
+                count: count
+            },
+            dataType: "json",
+            success: function (data) {
+                if (data.code == 0) {
+                    window.location.href = "/person/diaShop/likBuy/" + goodsid;
+                } else if (data.success == 'login') {
+                    window.location.href = "/diaShop/login"
+                }
+            }
+        });
+    }
+
+    function deleteCart(goodsid) {
+        $.ajax({
+            type: "post",
+            url: '/person/diaShop/deleteCart',
+            data: {
+                goodsid: goodsid
+            },
+            dataType: "json",
+            success: function (data) {
+                if (data.code == 0) {
+                    layer.msg("删除购物车成功!");
+                } else if (data.success == 'login') {
+                    window.location.href = "/diaShop/login"
+                }
+            }
+        });
+    }
+
+    function jiesuan() {
+        window.location.href = "/person/diaShop/likBuy1";
+    }
+
+    function addRePly() {
+        var content = $("#say_some").val();
+        var goodsid = $("#goodsid").val();
+        $.ajax({
+            type: "post",
+            url: '/person/diaShop/addRePly',
+            data: {content: content, goodsid: goodsid},
+            dataType: "json",
+            success: function (data) {
+                if (data.success) {
+                    layer.msg("评论成功!", {icon: 2});
+
+                } else {
+                    layer.msg("评论失败!", {icon: 2});
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>

@@ -14,7 +14,7 @@ spring:
         min-idle: 1
   datasource:
      name: test
-     url: jdbc:mysql://localhost:3306/zscat-platform?useUnicode=true&characterEncoding=utf8&autoReconnect=true&useSSL=false
+     url: jdbc:mysql://localhost:3306/zscat-shop?useUnicode=true&characterEncoding=utf8&autoReconnect=true&useSSL=false
      username: root
      password: root@123
      driver-class-name: com.mysql.jdbc.Driver
@@ -79,6 +79,6 @@ logging:
     com.zscat.label.dao: debug
     org.springframework.hateoas: INFO
     org.springframework.data: INFO
-label:
+shop:
   service:
     version: 1.0.0

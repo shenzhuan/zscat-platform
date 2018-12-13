@@ -6,47 +6,6 @@
 	<select id="get" resultType="com.zscat.user.entity.FavoriteDO">
 		select `id`,`addTime`,`deleteStatus`,`type`,`goodsid`,`storeid`,`userid` from t_favorite where id = #{value}
 	</select>
-	<select id="userTopicFavorite" resultType="com.zscat.user.entity.TopicDO">
-		select g.img,g.id,g.title,g.clickhit from t_favorite f RIGHT JOIN t_topic g on f.goodsid=g.id
-		<where>
-
-			<if test="type != null and type != ''"> and f.type = #{type} </if>
-
-			<if test="userid != null and userid != ''"> and f.userid = #{userid} </if>
-		</where>
-		<choose>
-			<when test="sort != null and sort.trim() != ''">
-				order by ${sort} ${order}
-			</when>
-			<otherwise>
-				order by id desc
-			</otherwise>
-		</choose>
-		<if test="offset != null and limit != null">
-			limit #{offset}, #{limit}
-		</if>
-	</select>
-
-	<select id="userFavorite" resultType="com.zscat.user.entity.TGoodsDO">
-	select g.img,g.id,g.title,g.prices,g.id,g.collecthit from t_favorite f RIGHT JOIN t_goods g on f.goodsid=g.id
-		<where>
-
-			<if test="type != null and type != ''"> and f.type = #{type} </if>
-
-			<if test="userid != null and userid != ''"> and f.userid = #{userid} </if>
-		</where>
-		<choose>
-			<when test="sort != null and sort.trim() != ''">
-				order by ${sort} ${order}
-			</when>
-			<otherwise>
-				order by id desc
-			</otherwise>
-		</choose>
-		<if test="offset != null and limit != null">
-			limit #{offset}, #{limit}
-		</if>
-	</select>
 	<select id="list" resultType="com.zscat.user.entity.FavoriteDO">
 		select `id`,`addTime`,`deletestatus`,`type`,`goodsid`,`storeid`,`userid` from t_favorite
         <where>  

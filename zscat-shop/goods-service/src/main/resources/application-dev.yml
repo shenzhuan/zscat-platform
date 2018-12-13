@@ -14,7 +14,7 @@ spring:
         min-idle: 1
   datasource:
      name: test
-     url: jdbc:mysql://localhost:3306/zscat-platform?useUnicode=true&characterEncoding=utf8&autoReconnect=true&useSSL=false
+     url: jdbc:mysql://localhost:3306/zscat-shop?useUnicode=true&characterEncoding=utf8&autoReconnect=true&useSSL=false
      username: root
      password: root@123
 

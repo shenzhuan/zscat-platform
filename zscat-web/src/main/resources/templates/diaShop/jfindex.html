@@ -1,0 +1,150 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="/diaShop/css/common.css" rel="stylesheet" type="text/css"/>
+    <link href="/diaShop/css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="/diaShop/fonts/iconfont.css" rel="stylesheet" type="text/css"/>
+    <script src="/diaShop/js/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <script src="/diaShop/js/jquery.SuperSlide.2.1.1.js" type="text/javascript"></script>
+    <script src="/diaShop/js/common_js.js" type="text/javascript"></script>
+    <script src="/diaShop/js/footer.js" type="text/javascript"></script>
+    <script src="/diaShop/js/lrtk.js" type="text/javascript"></script>
+    <title>品牌街</title>
+</head>
+
+<body>
+<!--顶部图层-->
+<div th:replace="diaShop/layout/mallHeader"></div>
+
+<!--广告-->
+<div style=" background-image:url(/diaShop/images/ADimg_02.png); background-position:center; background-repeat:no-repeat; height:400px;"></div>
+<!--品牌团购样式-->
+<div class="Inside_pages">
+    <div class="buy_brands">
+
+        <!--团购列表-->
+        <div class="buy_brands_list">
+            <div class="title_name"><img src="/diaShop/images/title_buy_06.png"/></div>
+            <ul class="p_sell">
+
+                <li th:each="jf,iterStat:${jfList}">
+                    <div class="img"><img th:src="@{${jf.img}}" width="160" height="140"></div>
+                    <div class="name" th:text="${jf.title}">Olay玉兰油 多效修护霜50g（新老包装随机发放）</div>
+                    <div class="price">
+                        <table border="0" style="width:100%; color:#888888;" cellspacing="0" cellpadding="0">
+                            <tbody>
+                            <tr style="font-family:'宋体';">
+                                <td width="33%">市场价</td>
+                                <td width="33%">折扣</td>
+                                <td width="33%">为您节省</td>
+                            </tr>
+                            <tr>
+                                <td style="text-decoration:line-through;" th:text="'￥'+${jf.prices}">￥5388</td>
+                                <td>8.0</td>
+                                <td>￥100</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="ch_bg">
+                        <span class="ch_txt"><font th:text="'￥'+${jf.prices}">5288</font></span>
+                        <a th:href="@{'/diaShop/jfDetail/'+${jf.id}}" class="ch_a">查看</a>
+                        <a href="#" th:onclick="'duihuan('+${jf.id}+')'" class="buy_botton">立即兑换</a>
+                    </div>
+                    <div class="times"></div>
+                </li>
+
+            </ul>
+        </div>
+        <!---->
+        <div class="sell_style clearfix">
+            <div class="advisory sell">
+                <div class="left_sell">
+                    <a href="#">
+                        <img src="/diaShop/images/tm_1.png"></a>
+                </div>
+                <div class="right_sell">
+                    客服在线时间
+                    <br>
+                    每天09:00 - 18:00
+                </div>
+            </div>
+            <div class="Recharge sell">
+                <div class="left_sell">
+                    <a href="#">
+                        <img src="/diaShop/images/tm_2.png"></a>
+                </div>
+                <div class="right_sell">
+                    享受VIP专属特权
+                    <br>
+                    <b>更有专属优惠等着你</b>
+                </div>
+            </div>
+            <div class="advisory_phone sell">
+                <div class="left_sell">
+                    <em class="iconfont icon-dianhua"></em>
+                    <h2>400-3453-333</h2>
+                    <h3>客服热线（免长途费）</h3>
+                </div>
+                <div class="right_sell">
+                    电话咨询时间
+                    <br>
+                    每天09:00 - 24:00
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+    function duihuan(goodsid) {
+        var count = 1;
+        $.ajax({
+            type: "post",
+            url: '/person/diaShop/duihuan',
+            data: {
+                goodsid: goodsid,
+                count: count
+            },
+            dataType: "json",
+            success: function (data) {
+                if (data.code == 0) {
+                    layer.msg('兑换成功');
+                    window.location.href = "/diaShop/jfindex";
+                } else {
+                    if (data.success == 'login') {
+                        window.location.href = "/street/login"
+                    } else {
+                        layer.msg(data.msg);
+                    }
+
+                }
+            }
+        });
+    }
+
+    function addCart(goodsid) {
+        var count = 1;
+        $.ajax({
+            type: "post",
+            url: '/diaShop/street/addCart',
+            data: {
+                goodsid: goodsid,
+                count: count
+            },
+            dataType: "json",
+            success: function (data) {
+                if (data.code == 0) {
+                    window.location.href = "/person/diaShop/likBuy/" + goodsid;
+                } else if (data.success == 'login') {
+                    window.location.href = "/street/login"
+                }
+            }
+        });
+    }
+
+</script>
+<div th:replace="diaShop/layout/mallFooter"></div>
+</body>
+</html>
