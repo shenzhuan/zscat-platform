@@ -16,7 +16,7 @@ spring:
     platform: mysql
     url: jdbc:mysql://172.31.100.171:8066/label_test?useUnicode=true&characterEncoding=utf8&autoReconnect=true&useSSL=false
     username: root_test_content
-    password: fittime1991
+    password: root@123
     druid:
       initial-size: 1
       max-active: 20

@@ -1,5 +1,5 @@
 server:
-  port: 9090
+  port: 9096
 spring:
   redis:
      database: 1
@@ -14,9 +14,10 @@ spring:
         min-idle: 1
   datasource:
      name: test
-     url: jdbc:mysql://172.31.200.204:8066/label?useUnicode=true&characterEncoding=utf8&autoReconnect=true&useSSL=false
-     username: root_dev
-     password: fittime1991
+     url: jdbc:mysql://localhost:3306/zscat-platform?useUnicode=true&characterEncoding=utf8&autoReconnect=true&useSSL=false
+     username: root
+     password: root@123
+
      driver-class-name: com.mysql.jdbc.Driver
   mybatis:
      mapper-locations: classpath:mapper/*.xml
@@ -28,7 +29,7 @@ dubbo:
   application.name: zscat-label-dubbo-provider
   protocol:
     name: dubbo
-    port: 22181
+    port: 22183
     id: dubbo
     status: server
   registry:
@@ -76,9 +77,9 @@ management:
 #日志配置
 logging:
   level:
-    com.zscat.label.dao: debug
+    com.zscat.goods.dao: debug
     org.springframework.hateoas: INFO
     org.springframework.data: INFO
-label:
+shop:
   service:
     version: 1.0.0

@@ -1,4 +1,4 @@
-package com.zscat.label.enums;
+package com.zscat.goods.enums;
 
 /**
  * 标签分组 枚举
