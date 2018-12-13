@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.zscat.shop.dao.CouponDao">
+<mapper namespace="com.zscat.user.dao.CouponDao">
 
-	<select id="get" resultType="com.zscat.shop.domain.CouponDO">
+	<select id="get" resultType="com.zscat.user.entity.CouponDO">
 		select `id`,`addTime`,`status`,`amount`,`begin_time`,`coupon_count`,`coupon_end_time`,`coupon_name`,`coupon_order_amount`,`pic`,`is_receive`,`type` from t_coupon where id = #{value}
 	</select>
-	<select id="getUserCoupon" resultType="com.zscat.shop.domain.CouponDO">
+	<select id="getUserCoupon" resultType="com.zscat.user.entity.CouponDO">
 select t.`id`,`addTime`,`status`,`amount`,`begin_time`,`coupon_count`,`coupon_end_time`,`coupon_name`,`coupon_order_amount`,`pic`,`is_receive`,`type` from t_coupon t LEFT JOIN t_user_coupon up on t.id=up.coupon_id  where up.user_id=#{id} <if test="status != null and status != ''"> and t.status = #{status} </if>
 
 	</select>
-	<select id="list" resultType="com.zscat.shop.domain.CouponDO">
+	<select id="list" resultType="com.zscat.user.entity.CouponDO">
 		select `id`,`addTime`,`status`,`amount`,`begin_time`,`coupon_count`,`coupon_end_time`,`coupon_name`,`coupon_order_amount`,`pic`,`is_receive`,`type` from t_coupon
 		<where>
 			<if test="id != null and id != ''"> and id = #{id} </if>
@@ -57,7 +57,7 @@ select t.`id`,`addTime`,`status`,`amount`,`begin_time`,`coupon_count`,`coupon_en
 		</where>
 	</select>
 
-	<insert id="save" parameterType="com.zscat.shop.domain.CouponDO" useGeneratedKeys="true" keyProperty="id">
+	<insert id="save" parameterType="com.zscat.user.entity.CouponDO" useGeneratedKeys="true" keyProperty="id">
 		insert into t_coupon
 		(
 		`addTime`,
@@ -88,7 +88,7 @@ select t.`id`,`addTime`,`status`,`amount`,`begin_time`,`coupon_count`,`coupon_en
 		)
 	</insert>
 
-	<update id="update" parameterType="com.zscat.shop.domain.CouponDO">
+	<update id="update" parameterType="com.zscat.user.entity.CouponDO">
 		update t_coupon
 		<set>
 			<if test="addtime != null">`addTime` = #{addtime}, </if>

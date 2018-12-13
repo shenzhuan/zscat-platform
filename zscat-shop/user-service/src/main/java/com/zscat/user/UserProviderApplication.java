@@ -1,4 +1,4 @@
-package com.zscat.label;
+package com.zscat.user;
 
 import com.alibaba.dubbo.config.spring.context.annotation.EnableDubbo;
 import lombok.extern.log4j.Log4j2;
@@ -12,12 +12,12 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 /**
  * DubboProviderApplication
  * 服务提供启动类
- * @author xiaoze
+ * * @author zscat
  * @date 2018/6/7
  */
 @SpringBootApplication
 @Log4j2
-@MapperScan(basePackages = "com.zscat.label.dao")
+@MapperScan(basePackages = "com.zscat.user.dao")
 @EnableTransactionManagement
 @EnableAspectJAutoProxy
 @ComponentScan("com.zscat")

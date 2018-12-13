@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.zscat.shop.dao.TOrderDao">
+<mapper namespace="com.zscat.order.dao.TOrderDao">
 
-	<select id="get" resultType="com.zscat.shop.domain.TOrderDO">
+	<select id="get" resultType="com.zscat.order.entity.TOrderDO">
 		select `id`,`totalprice`,`totalcount`,couponid,`ordersn`,`status`,`userid`,`createdate`,`paymentid`,`addressid`,`username`,`usercontent` from t_order where id = #{value}
 	</select>
 
-	<select id="list" resultType="com.zscat.shop.domain.TOrderDO">
+	<select id="list" resultType="com.zscat.order.entity.TOrderDO">
 		select `id`,`totalprice`,`totalcount`,couponid,`ordersn`,`status`,`userid`,`createdate`,`paymentid`,`addressid`,`username`,`usercontent` from t_order
         <where>  
 		  		  <if test="id != null and id != ''"> and id = #{id} </if>
@@ -52,7 +52,7 @@
 		  		</where>
 	</select>
 	 
-	<insert id="save" parameterType="com.zscat.shop.domain.TOrderDO" useGeneratedKeys="true" keyProperty="id">
+	<insert id="save" parameterType="com.zscat.order.entity.TOrderDO" useGeneratedKeys="true" keyProperty="id">
 		insert into t_order
 		(
 			`totalprice`, 
@@ -83,7 +83,7 @@
 		)
 	</insert>
 	 
-	<update id="update" parameterType="com.zscat.shop.domain.TOrderDO">
+	<update id="update" parameterType="com.zscat.order.entity.TOrderDO">
 		update t_order 
 		<set>
 			<if test="totalprice != null">`totalprice` = #{totalprice}, </if>

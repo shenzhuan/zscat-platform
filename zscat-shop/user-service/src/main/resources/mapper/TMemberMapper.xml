@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.zscat.shop.dao.TMemberDao">
+<mapper namespace="com.zscat.user.dao.TMemberDao">
 
-	<select id="get" resultType="com.zscat.shop.domain.TMemberDO">
+	<select id="get" resultType="com.zscat.user.entity.TMemberDO">
 		select `id`,`username`,`password`,`addtime`,`phone`,`qq`,`email`,`trueName`,`gold`,`status`,`address`,`storeid`,`img`,`sex` ,`balance`,`jifen`,`img`,`wx_open_id`,`wx_unionid`,`wx_avatar` from t_member where id = #{value}
 	</select>
 
-	<select id="list" resultType="com.zscat.shop.domain.TMemberDO">
+	<select id="list" resultType="com.zscat.user.entity.TMemberDO">
 		select `id`,`username`,`password`,`addtime`,`phone`,`qq`,`email`,`trueName`,`gold`,`status`,`address`,`storeid`,`img`,`sex`,`balance`,`jifen`,`img`,`wx_open_id`,`wx_unionid`,`wx_avatar` from t_member
 		<where>
 			<if test="id != null and id != ''"> and id = #{id} </if>
@@ -65,7 +65,7 @@
 		</where>
 	</select>
 
-	<insert id="save" parameterType="com.zscat.shop.domain.TMemberDO" useGeneratedKeys="true" keyProperty="id">
+	<insert id="save" parameterType="com.zscat.user.entity.TMemberDO" useGeneratedKeys="true" keyProperty="id">
 		insert into t_member
 		(
 		`username`,
@@ -114,7 +114,7 @@
 		)
 	</insert>
 
-	<update id="update" parameterType="com.zscat.shop.domain.TMemberDO">
+	<update id="update" parameterType="com.zscat.user.entity.TMemberDO">
 		update t_member
 		<set>
 			<if test="username != null">`username` = #{username}, </if>
