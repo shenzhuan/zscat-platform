@@ -29,6 +29,11 @@
             <artifactId>order-api</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>com.platform</groupId>
+            <artifactId>goods-api</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
 
         <dependency>
             <groupId>com.fittime</groupId>
