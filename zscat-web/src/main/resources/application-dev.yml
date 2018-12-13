@@ -3,7 +3,7 @@ spring:
     name: zscat-web-dubbo-consumer1
   datasource:
     name: test
-    url: jdbc:mysql://172.31.200.204:8066/statistic?useUnicode=true&characterEncoding=utf8&autoReconnect=true&useSSL=false
+    url: jdbc:mysql://localhost:3306/zscat-platform?useUnicode=true&characterEncoding=utf8&autoReconnect=true&useSSL=false
     username: root
     password: root@123
     driver-class-name: com.mysql.jdbc.Driver
