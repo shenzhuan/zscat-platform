@@ -4,6 +4,7 @@ package com.zscat.goods.impl;
 import com.zscat.goods.dao.TCartDao;
 import com.zscat.goods.entity.TCartDO;
 import com.zscat.goods.service.TCartService;
+import com.zscat.goods.service.TGoodsService;
 import com.zscat.goods.service.TStoreService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,7 @@ public class TCartServiceImpl implements TCartService {
 	@Autowired
 	private TStoreService tStoreService;
 	@Autowired
-	private com.zscat.shop.service.TGoodsService tGoodsService;
+	private TGoodsService tGoodsService;
 
 	@Override
 	public TCartDO get(Long id){

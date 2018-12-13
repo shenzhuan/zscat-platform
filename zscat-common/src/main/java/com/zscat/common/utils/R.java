@@ -17,6 +17,10 @@ public class R extends HashMap<String, Object> {
 	public static R Empty() {
 		return error(3, "参数为空");
 	}
+
+	public static R notlogin() {
+		return error(-1, "没有登陆");
+	}
 	public static R paramException() {
 		return error(4, "参数错误");
 	}
@@ -53,8 +57,11 @@ public class R extends HashMap<String, Object> {
 		return new R();
 	}
 
+	@Override
 	public R put(String key, Object value) {
 		super.put(key, value);
 		return this;
 	}
+
+
 }

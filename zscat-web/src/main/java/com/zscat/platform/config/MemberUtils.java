@@ -1,6 +1,6 @@
-package com.zscat.config;
+package com.zscat.platform.config;
 
-import com.zscat.shop.domain.TMemberDO;
+import com.zscat.user.entity.TMemberDO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.context.request.RequestAttributes;
@@ -50,8 +50,8 @@ public class MemberUtils {
 
 
 	public static TMemberDO getSessionLoginUser() {
-		return ShiroUtils.getUser();
-	//	return (TMemberDO) getSession().getAttribute(MemberUtils.SESSION_LOGIN_MEMBER);
+
+        return (TMemberDO) getSession().getAttribute(MemberUtils.SESSION_LOGIN_MEMBER);
 	}
 
 }

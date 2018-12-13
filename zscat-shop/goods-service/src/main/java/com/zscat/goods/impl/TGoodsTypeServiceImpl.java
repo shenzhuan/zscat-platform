@@ -2,7 +2,7 @@ package com.zscat.goods.impl;
 
 import com.zscat.goods.dao.TGoodsTypeDao;
 import com.zscat.goods.entity.TGoodsTypeDO;
-import com.zscat.shop.service.TGoodsTypeService;
+import com.zscat.goods.service.TGoodsTypeService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 

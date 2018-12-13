@@ -1,4 +1,4 @@
-package com.zscat.shop.service;
+package com.zscat.goods.service;
 
 import com.zscat.goods.entity.UserJfgoodsDO;
 

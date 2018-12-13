@@ -1,5 +1,6 @@
 package com.zscat.order.service;
 
+import com.zscat.common.utils.R;
 import com.zscat.order.entity.TOrderDO;
 
 import java.util.List;
@@ -31,4 +32,7 @@ public interface TOrderService {
     TOrderDO insertWapOrder(Long productId, Long addressid, Long paymentid, String usercontent, Long id, String username);
 
 
+	TOrderDO submitOrder(Long id);
+
+	R balancePay(Long id);
 }

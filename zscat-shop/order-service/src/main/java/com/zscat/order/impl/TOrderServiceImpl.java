@@ -1,8 +1,10 @@
 package com.zscat.order.impl;
 
 
+import com.zscat.common.utils.R;
 import com.zscat.common.utils.RandomString;
 import com.zscat.goods.entity.TGoodsDO;
+import com.zscat.goods.service.TGoodsService;
 import com.zscat.order.dao.TOrderDao;
 import com.zscat.order.dao.TOrderLogDao;
 import com.zscat.order.entity.TOrderDO;
@@ -39,7 +41,7 @@ public class TOrderServiceImpl implements TOrderService {
 	@Autowired
 	private TOrderLogDao tOrderLogDao;
 	@Autowired
-	private com.zscat.shop.service.TGoodsService tGoodsService;
+	private TGoodsService tGoodsService;
 	
 	@Override
 	public TOrderDO get(Long id){
@@ -101,6 +103,16 @@ public class TOrderServiceImpl implements TOrderService {
 		tOrderLogDao.save(log);
 
 		return order;
+	}
+
+	@Override
+	public TOrderDO submitOrder(Long id) {
+		return null;
+	}
+
+	@Override
+	public R balancePay(Long id) {
+		return null;
 	}
 
 }

@@ -16,8 +16,8 @@ spring:
   datasource:
      name: test
      url: jdbc:mysql://172.31.200.204:8066/blog?useUnicode=true&characterEncoding=utf8&autoReconnect=true&useSSL=false
-     username: root_dev
-     password: fittime1991
+     username: root
+     password: root@123
      driver-class-name: com.mysql.jdbc.Driver
   mybatis:
     mapper-locations: classpath:mapper/*.xml

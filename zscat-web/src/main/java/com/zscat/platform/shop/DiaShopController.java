@@ -1,81 +1,31 @@
-package com.zscat.web;
+package com.zscat.platform.shop;
 
 
-import com.zsCat.common.base.RabbitMsg;
-import com.zsCat.common.common.jackson.JsonUtils;
-import com.zsCat.common.common.utils.CookieUtil;
-import com.zsCat.common.common.utils.JSONSerializerUtil;
-import com.zsCat.common.common.utils.JSONUtils;
-import com.zsCat.common.common.utils.PageUtils;
-import com.zsCat.common.common.utils.Query;
-import com.zsCat.common.common.utils.R;
-import com.zsCat.common.lucene.IndexObject;
-import com.zsCat.common.redis.RedisHashUtil;
-import com.zsCat.common.utils.DateUtils;
-import com.zsCat.common.utils.IPUtils;
-import com.zscat.config.ObjectSender;
-import com.zscat.config.ShiroUtils;
-import com.zscat.shop.Constan;
-import com.zscat.shop.RedisConstant;
-import com.zscat.shop.domain.ArticleDO;
-import com.zscat.shop.domain.CouponDO;
-import com.zscat.shop.domain.FavoriteDO;
-import com.zscat.shop.domain.JifengoodsDO;
-import com.zscat.shop.domain.TCartDO;
-import com.zscat.shop.domain.TFloorDO;
-import com.zscat.shop.domain.TGoodsClassDO;
-import com.zscat.shop.domain.TGoodsDO;
-import com.zscat.shop.domain.TMemberDO;
-import com.zscat.shop.domain.TStoreDO;
-import com.zscat.shop.service.AddressService;
-import com.zscat.shop.service.ArticleService;
-import com.zscat.shop.service.BannerService;
-import com.zscat.shop.service.CouponService;
-import com.zscat.shop.service.FavoriteService;
-import com.zscat.shop.service.JifendataService;
-import com.zscat.shop.service.JifengoodsService;
-import com.zscat.shop.service.LuceneService;
-import com.zscat.shop.service.TBrandService;
-import com.zscat.shop.service.TCartService;
-import com.zscat.shop.service.TFloorService;
-import com.zscat.shop.service.TGoodSorderService;
-import com.zscat.shop.service.TGoodsClassService;
-import com.zscat.shop.service.TGoodsService;
-import com.zscat.shop.service.TGoodsTypeService;
-import com.zscat.shop.service.TMemberService;
-import com.zscat.shop.service.TOrderService;
-import com.zscat.shop.service.TReplyService;
-import com.zscat.shop.service.TStoreService;
-import com.zscat.shop.service.TopicService;
-
-import com.zscat.util.MD5Utils;
-
+import com.alibaba.dubbo.config.annotation.Reference;
+import com.zscat.common.utils.IPUtils;
+import com.zscat.common.utils.PageUtils;
+import com.zscat.common.utils.Query;
+import com.zscat.common.utils.R;
+import com.zscat.goods.entity.*;
+import com.zscat.goods.service.*;
+import com.zscat.order.service.TGoodSorderService;
+import com.zscat.order.service.TOrderService;
+import com.zscat.platform.config.MemberUtils;
+import com.zscat.user.entity.CouponDO;
+import com.zscat.user.entity.FavoriteDO;
+import com.zscat.user.entity.TMemberDO;
+import com.zscat.user.service.CouponService;
+import com.zscat.user.service.FavoriteService;
+import com.zscat.user.service.TMemberService;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.subject.Subject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * <p>
@@ -90,54 +40,108 @@ import java.util.Map;
 public class DiaShopController {
     private String PREFIX = "/diaShop/";
     String path ="F:/zscat-b2b2c/";
-    @Autowired
-    private ObjectSender sender;
-    @Autowired
-    private ArticleService articleService;
-    @Autowired
+
+    @Reference(
+            version = "${web.service.version}",
+            application = "${dubbo.application.id}",
+            registry = "${dubbo.registry.id}"
+    )
     private TBrandService tBrandService;
-    @Autowired
+    @Reference(
+            version = "${web.service.version}",
+            application = "${dubbo.application.id}",
+            registry = "${dubbo.registry.id}"
+    )
     private TGoodsTypeService tGoodsTypeService;
-    @Autowired
+    @Reference(
+            version = "${web.service.version}",
+            application = "${dubbo.application.id}",
+            registry = "${dubbo.registry.id}"
+    )
     private TGoodsService tGoodsService;
-    @Autowired
+    @Reference(
+            version = "${web.service.version}",
+            application = "${dubbo.application.id}",
+            registry = "${dubbo.registry.id}"
+    )
     private TGoodsClassService tGoodsClassService;
-    @Autowired
+    @Reference(
+            version = "${web.service.version}",
+            application = "${dubbo.application.id}",
+            registry = "${dubbo.registry.id}"
+    )
     private TStoreService tStoreService;
-    @Autowired
+    @Reference(
+            version = "${web.service.version}",
+            application = "${dubbo.application.id}",
+            registry = "${dubbo.registry.id}"
+    )
     private BannerService bannerService;
-    @Autowired
+    @Reference(
+            version = "${web.service.version}",
+            application = "${dubbo.application.id}",
+            registry = "${dubbo.registry.id}"
+    )
     private CouponService couponService;
-    @Autowired
-    private TopicService topicService;
-    @Autowired
+    @Reference(
+            version = "${web.service.version}",
+            application = "${dubbo.application.id}",
+            registry = "${dubbo.registry.id}"
+    )
     private TCartService tCartService;
-    @Autowired
-    private TReplyService tReplyService;
-    @Autowired
+    @Reference(
+            version = "${web.service.version}",
+            application = "${dubbo.application.id}",
+            registry = "${dubbo.registry.id}"
+    )
     private TMemberService tMemberService;
 
-    @Autowired
+    @Reference(
+            version = "${web.service.version}",
+            application = "${dubbo.application.id}",
+            registry = "${dubbo.registry.id}"
+    )
     private AddressService addressService;
-    @Autowired
+    @Reference(
+            version = "${web.service.version}",
+            application = "${dubbo.application.id}",
+            registry = "${dubbo.registry.id}"
+    )
     private FavoriteService favoriteService;
-    @Autowired
+    @Reference(
+            version = "${web.service.version}",
+            application = "${dubbo.application.id}",
+            registry = "${dubbo.registry.id}"
+    )
     private TOrderService orderService;
-    @Autowired
+    @Reference(
+            version = "${web.service.version}",
+            application = "${dubbo.application.id}",
+            registry = "${dubbo.registry.id}"
+    )
     private TGoodSorderService tGoodSorderService;
-    @Autowired
-    private TFloorService tFloorService;
-    @Autowired
-    private JifendataService jifendataService;
-    @Autowired
+
+    @Reference(
+            version = "${web.service.version}",
+            application = "${dubbo.application.id}",
+            registry = "${dubbo.registry.id}"
+    )
     private TMemberService userService;
-    @Autowired
-    private JifengoodsService jifengoodsService;
-    @Autowired
-    private LuceneService luceneService;
+    @Reference(
+            version = "${web.service.version}",
+            application = "${dubbo.application.id}",
+            registry = "${dubbo.registry.id}"
+    )
+    private UserJfgoodsService userJfgoodsService;
+    @Reference(
+            version = "${web.service.version}",
+            application = "${dubbo.application.id}",
+            registry = "${dubbo.registry.id}"
+    )
+    private TFloorService tFloorService;
     @ModelAttribute
-    public void init(HttpServletRequest request,Model model){
-        TMemberDO user=MemberUtils.getSessionLoginUser();
+    public void init(HttpServletRequest request, Model model) {
+        TMemberDO user = MemberUtils.getSessionLoginUser();
         if(user!=null){
             Map<String, Object> param =new HashMap<>();
             param.put("userid",MemberUtils.getSessionLoginUser().getId());
@@ -290,8 +294,6 @@ public class DiaShopController {
             model.addAttribute("floorList", floorList);
             params = new Query(params1);
             params.put("limit", 8);
-            List<ArticleDO> tArticleList = articleService.list(params);
-            model.addAttribute("tArticleList", tArticleList);
             model.addAttribute("home", "1");
         }catch (Exception e){
             e.printStackTrace();
@@ -308,8 +310,8 @@ public class DiaShopController {
             Map<String, Object> param = new HashMap<>();
             String keyword =req.getParameter("keyword");
             if (keyword!=null){
-                PageUtils data = luceneService.page(1,15,keyword);
-                model.addAttribute("data",data);
+                //  PageUtils data = luceneService.page(1,15,keyword);
+                //  model.addAttribute("data",data);
             }else{
                 model.addAttribute("data",new PageUtils(new ArrayList<>(),0));
             }
@@ -402,11 +404,12 @@ public class DiaShopController {
         }else{
             goods.setIs_favorite(2);
         }
-        String ip = IPUtils.getClientAddress(request);
-        TGoodsDO goodsR = new TGoodsDO(goods.getId(), goods.getTitle(), goods.getImg(), goods.getPrices());
+        String ip = IPUtils.getIpAddr(request);
+       /* TGoodsDO goodsR = new TGoodsDO(goods.getId(), goods.getTitle(), goods.getImg(), goods.getPrices());
         RedisHashUtil.hset(RedisConstant.SHOPPING_HISTORY + ip, id + "", JSONUtils.beanToJson(goodsR), 24 * 60 * 60);
         model.addAttribute("goods",goods);
-        if(goods.getImgmore()!=null && goods.getImgmore().indexOf(",")>-1){
+       */
+        if (goods.getImgmore() != null && goods.getImgmore().indexOf(",") > -1) {
             model.addAttribute("imgs", goods.getImgmore().split(","));
         }
         goods.setClickhit(goods.getClickhit()+1);
@@ -433,13 +436,13 @@ public class DiaShopController {
         model.addAttribute("classList", tGoodsService.list1(params));
         List<TGoodsDO> viewGoodslist = new ArrayList<>();
 
-        Map<String, String> map = RedisHashUtil.hgetAll(RedisConstant.SHOPPING_HISTORY + ip);
+        /*Map<String, String> map = RedisHashUtil.hgetAll(RedisConstant.SHOPPING_HISTORY + ip);
 
         List<String> sList = JSONSerializerUtil.testMap2List(map);
         for (int i = 0; i < sList.size(); i++) {
             String json = sList.get(i);
             viewGoodslist.add(JsonUtils.fromJson(json, TGoodsDO.class));
-        }
+        }*/
         model.addAttribute("viewGoodslist", viewGoodslist);
 //        params = new Query(params1);
 //        params.put("limit", 60);
@@ -460,7 +463,7 @@ public class DiaShopController {
             params = new Query(params1);
             params.put("limit", 8);
 
-            model.addAttribute("jfList", jifengoodsService.list(params));
+            //   model.addAttribute("jfList", jifengoodsService.list(params));
 
         }catch (Exception e){
             e.printStackTrace();
@@ -469,38 +472,12 @@ public class DiaShopController {
     }
 
     /**
-     * 跳转到商品详情
-     */
-    @RequestMapping("/jfDetail/{id}")
-    public String jfDetail(@PathVariable Long id, Model model) {
-        JifengoodsDO goods = jifengoodsService.get(id);
-        model.addAttribute("goods",goods);
-
-        Map<String, Object> params1 = new HashMap<>();
-        Query params = new Query(params1);
-        params.put("limit", 4);
-        params.put("iscom","1");
-        model.addAttribute("commList", tGoodsService.list1(params));
-
-        params = new Query(params1);
-        params.put("limit", 6);
-        params.put("typeid",goods.getTypeid());
-        model.addAttribute("typeList", tGoodsService.list1(params));
-
-        params = new Query(params1);
-        params.put("limit", 6);
-        params.put("classid",goods.getClassid());
-        model.addAttribute("classList", tGoodsService.list1(params));
-
-        return PREFIX + "jfDetail";
-    }
-    /**
      * 跳转到优惠劵
      */
     @RequestMapping("youhuijuan")
     public String youhuijuan(Model model) {
         try {
-            TMemberDO user = ShiroUtils.getUser();
+            TMemberDO user = MemberUtils.getSessionLoginUser();
             if(user!=null){
                 model.addAttribute("username", user.getUsername());
                 model.addAttribute("cartCount", tCartService.selectOwnCart(user.getId()));
@@ -517,20 +494,7 @@ public class DiaShopController {
         }
         return PREFIX + "youhuijuan";
     }
-    /**
-     * 跳转到文章详情
-     */
-    @RequestMapping("/articleDetail/{id}")
-    public String articleDetail(@PathVariable Long id, Model model) {
-        ArticleDO article = articleService.get(id);
-        model.addAttribute("article",article);
-        Map<String, Object> params1 = new HashMap<>();
-        Query params = new Query(params1);
-        params.put("limit", 4);
-        params.put("iscom","1");
-        model.addAttribute("commList", tGoodsService.list1(params));
-        return PREFIX + "article";
-    }
+
     /**
      * 跳转到店铺详情
      */
@@ -637,14 +601,9 @@ public class DiaShopController {
     R ajaxLogin(HttpServletRequest request) {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        password = MD5Utils.encrypt(username, password);
-        UsernamePasswordToken token = new UsernamePasswordToken(username, password);
-        Subject subject = SecurityUtils.getSubject();
         try {
-            subject.login(token);
-            jifendataService.save(Constan.LOGIN);
             return R.ok();
-        } catch (AuthenticationException e) {
+        } catch (Exception e) {
             return R.error("用户或密码错误");
         }
     }
@@ -675,12 +634,11 @@ public class DiaShopController {
 
         TMemberDO m=new TMemberDO();
         m.setUsername(username);
-        secPwd = MD5Utils.encrypt(username, password);
         Map mapU =new HashMap();
         mapU.put("username",username);
         int count = userService.count(mapU);
         m.setStatus(1);
-        m.setJifen(Constan.REGISTER.getCode());
+        // m.setJifen(Constan.REGISTER.getCode());
         m.setPassword(secPwd);
         m.setAddtime(new Date());
         m.setBalance(1000);//余额
@@ -691,14 +649,7 @@ public class DiaShopController {
             }
             int result = userService.save(m);
             if (result>0) {
-                RabbitMsg msg1 = new RabbitMsg();
-                Map map =new HashMap();
-                map.put("userid",m.getId());
-                map.put("count",Constan.REGISTER.getCode());
-                map.put("msg",Constan.REGISTER.getMsg());
-                msg1.setMap(map);
-                msg1.setType("addjifen");
-                sender.send(msg1);
+
             } else {
                 return R.error("用户或密码错误");
             }
@@ -714,41 +665,11 @@ public class DiaShopController {
      */
     @RequestMapping("logout")
     public String logout(HttpServletRequest request) {
-        ShiroUtils.logout();
+        // ShiroUtils.logout();
         return "redirect:/diaShop/index";
     }
 
 
-    @RequestMapping("/init")
-    public ModelAndView init(HttpServletRequest request)throws Exception{
-        luceneService.delete(null);
-        ModelAndView mav=new ModelAndView();
-        try {
-            List<TGoodsDO> l =tGoodsService.list(null);
-            for (TGoodsDO content : l) {
-                IndexObject indexObject = new IndexObject();
-                indexObject.setId(content.getId());
-                indexObject.setTitle(content.getTitle());
-                indexObject.setKeywords(content.getTitle());
-                indexObject.setDescripton(content.getRemark());
-                indexObject.setPostDate(DateUtils.formatDate(content.getCreateDate()));
-                indexObject.setUrl(content.getTitle());
-                indexObject.setCol1(content.getPrices());
-                indexObject.setCol2(content.getImg());
-                //   indexObject.setUrl(this.httpProtocol + "://" + ControllerUtil.getDomain() + "/front/" + content.getSiteId() + "/" + content.getCategoryId() + "/" + content.getContentId());
-                luceneService.save(indexObject);
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        try {
-
-            mav.setViewName("diaShop/search");
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return mav;
-    }
     /**
      * 通过菜单类别
      * @param
