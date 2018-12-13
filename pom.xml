@@ -11,7 +11,9 @@
     <modules>
         <module>zscat-common</module>
         <module>zscat-blog</module>
-
+        <module>zscat-label</module>
+        <module>zscat-manager</module>
+        <module>zscat-admin</module>
         <module>zscat-shop</module>
         <module>zscat-web</module>
 

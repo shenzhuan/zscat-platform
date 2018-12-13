@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * DubboConsumerApplication
  * 消费者启动类
  *
- * @author xiaoze
+ * * @author zscat
  * @date 2018/6/7
  */
 @SpringBootApplication

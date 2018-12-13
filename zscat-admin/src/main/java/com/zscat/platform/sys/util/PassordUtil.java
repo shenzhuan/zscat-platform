@@ -30,7 +30,7 @@ public class PassordUtil {
 	public static void main(String[] args) {
 //		for (int i = 0; i < 6; i++) {
 //			String pass = getRandomPassword();
-////			String pass = "fittime1991";
+////			String pass = "root@123";
 //			System.out.println(pass + " " + encryptPassord(pass));
 //		}
 		

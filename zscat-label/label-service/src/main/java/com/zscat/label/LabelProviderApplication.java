@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 /**
  * DubboProviderApplication
  * 服务提供启动类
- * @author xiaoze
+ * * @author zscat
  * @date 2018/6/7
  */
 @SpringBootApplication
