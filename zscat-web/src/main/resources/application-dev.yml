@@ -26,8 +26,8 @@ web:
     version: 1.0.0
 dubbo:
   application:
-    id: zscat-dubbo-consumer-id1
-    name: zscat-dubbo-consumer-name1
+    id: zscat-web-dubbo-consumer-id1
+    name: zscat-web-dubbo-consumer-name1
   registry:
     protocol: zookeeper
     address: zookeeper://localhost:2181
