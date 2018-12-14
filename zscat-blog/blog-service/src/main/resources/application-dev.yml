@@ -34,7 +34,7 @@ dubbo:
   registry:
     address: zookeeper://localhost:2181
     servers: localhost:22181
-    id: zscat-blog-registry-1
+    id: zscat-registry-1
     sessionTimeoutMs: 30000
     syncTimeMs: 5000
     connectionTimeoutMs: 5000

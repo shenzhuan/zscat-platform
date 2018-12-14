@@ -26,7 +26,7 @@ mybatis:
   mapper-locations: mapper/*.xml
 
 dubbo:
-  application.name: zscat-label-dubbo-provider
+  application.name: zscat-goods-dubbo-provider
   protocol:
     name: dubbo
     port: 22183
@@ -35,18 +35,18 @@ dubbo:
   registry:
     address: zookeeper://localhost:2181
     servers: localhost:22181
-    id: zscat-label-registry-1
+    id: zscat-registry-1
     sessionTimeoutMs: 30000
     syncTimeMs: 5000
     connectionTimeoutMs: 5000
     root: /config_center/
   application:
-    name: zscat-label-dubbo-provider-name1
-    id: zscat-label-dubbo-provider-id1
+    name: zscat-goods-dubbo-provider-name1
+    id: zscat-goods-dubbo-provider-id1
     qos-enable: true
     qos-port: 22222
   scan:
-      basePackages: com.zscat.label.impl.service
+      basePackages: com.zscat.goods.impl.service
   provider:
      timeout: 1000
 

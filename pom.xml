@@ -17,6 +17,10 @@
         <module>zscat-shop</module>
         <module>zscat-web</module>
 
+        <module>zscat-monitor</module>
+        <module>zscat-dubbo-cache-starter</module>
+
+
     </modules>
 
     <name>zscat-platform</name>

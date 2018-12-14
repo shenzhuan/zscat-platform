@@ -1,6 +1,6 @@
 spring:
   application:
-    name: zscat-admin-dubbo-consumer1
+    name: zscat-admin-dubbo-consumer
   datasource:
     name: test
     url: jdbc:mysql://localhost:3306/zscat-platform?useUnicode=true&characterEncoding=utf8&autoReconnect=true&useSSL=false
@@ -20,8 +20,8 @@ label:
     version: 1.0.0
 dubbo:
   application:
-    id: zscat-dubbo-consumer-id1
-    name: zscat-dubbo-consumer-name1
+    id: zscat-admin-dubbo-consumer-id1
+    name: zscat-admin0dubbo-consumer-name1
   registry:
     protocol: zookeeper
     address: zookeeper://localhost:2181

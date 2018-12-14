@@ -56,6 +56,11 @@ public class TMemberDO implements Serializable {
 
 
 	private String token;
+
+    private Integer rememberMe;
+    private String role;
+
+
 	public String getSex() {
 		return sex;
 	}
@@ -264,4 +269,20 @@ public class TMemberDO implements Serializable {
 	public Long getStoreid() {
 		return storeid;
 	}
+
+    public Integer getRememberMe() {
+        return rememberMe;
+    }
+
+    public void setRememberMe(Integer rememberMe) {
+        this.rememberMe = rememberMe;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 }

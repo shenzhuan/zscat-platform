@@ -69,6 +69,13 @@ JS框架：jQuery
 - ├── zscat-blog--  blog dubbo服务 单独的zscat-blog数据库
 -     |-- blog-api      blog接口
 -     |-- blog-service  blog服务
+- ├── zscat-shop--  blog dubbo服务 单独的zscat-shop数据库
+-     |-- goods-api      商品接口
+-     |-- goods-service  商品服务
+-     |-- user-api      会员接口
+-     |-- user-service  会员服务
+-     |-- order-api      订单接口
+-     |-- order-service  订单服务
 - ├── zscat-manager-- 后台管理系统 zscat-platform数据库 springboot shiro
 - ├── zscat-web -- 前端项目
 - ├── zscat-admin-- 后台管理系统  springboot vue
@@ -83,8 +90,11 @@ JS框架：jQuery
 - 2.启动zookeep
 - 3.启动label-service，运行springboot的主类
 - 4.启动blog-service，运动springboot的主类
+- 4.启动user-service，运动springboot的主类
+- 4.启动goods-service，运动springboot的主类
+- 4.启动order-service，运动springboot的主类
 - 5.启动zscat-manager，运动springboot的主类，http://localhost:9095/index  账号 test 123456
-- 6.启动zscat-web，运动springboot的主类     http://localhost:9094/blog/index
+- 6.启动zscat-web，运动springboot的主类     http://localhost:9094/blog/index http://localhost:9094/diaShop/index
 - 7.启动zscat-admin，运动springboot的主类 http://localhost:9091/index  账号 admin 123456
 - 
 
